@@ -278,10 +278,10 @@ Now, let $A_i = a_i^x$. Because $a_i$ is positive, $A_i$ is positive too. Hence,
 \]
 Let $f(x) = x \ln x$ and $\overline{a} = \frac{\sum_{i=1}^n A_i}{n}$. Then, this inequality is equivalent to
 \[
-    \sum_{i=1}^n f(A_i) \geq \sum_{i=1}^n \Big( n \cdot f(\overline{a}) \Big)
+\sum_{i=1}^n f(A_i) \geq n \cdot f(\overline{a})
 \]
 \[
-    \iff \frac{1}{n} \sum_{i=1}^n f(A_i) \geq \sum_{i=1}^n f(\overline{a}) \text{.}
+    \iff \frac{1}{n} \sum_{i=1}^n f(A_i) \geq f(\overline{a}) \text{.}
 \]
 Since
 \[
@@ -326,13 +326,29 @@ Hence,
     \lim_{x \rightarrow 0} \mathcal{P}(x) = \mathcal{P}(0) \text{.}
 \]
 
+\bigskip
+
+Finally, for $x \neq 0$, $\mathcal{P}$ is differentiable and hence continuous;
+at $x = 0$ it is continuous by the limit above. So $\mathcal{P}$ is continuous
+on $\mathbb{R}$, with $\mathcal{P}' \geq 0$ on $\mathbb{R} \setminus \{0\}$.
+
+Let $r > s$. If $0 \notin (s, r)$, then $\mathcal{P}$ is continuous on $[s, r]$
+and differentiable on $(s, r)$, so by the Mean Value Theorem there is
+$c \in (s, r)$ with
+\[
+    \mathcal{P}(r) - \mathcal{P}(s) = \mathcal{P}'(c)(r - s) \geq 0 \text{.}
+\]
+If $s < 0 < r$, apply the same argument on $[s, 0]$ and on $[0, r]$ to get
+$\mathcal{P}(s) \leq \mathcal{P}(0) \leq \mathcal{P}(r)$. Either way,
+$\mathcal{P}(r) \geq \mathcal{P}(s)$.
+
 \section{Euler's Totient Formula Through Probability}
 
 \noindent\textbf{Problem 3.} Note that every $n \in \mathbb{Z^+}$ other than $1$ has a unique prime factorization, which can be written as
 \[
     n = \prod_{i=1}^{M} p_i^{k_i}
 \]
-for some sequence of primes $\{ p_i \}_{i=1}^M$ and some sequence of positive integers $\{k_i\}_{i=1}^M$. Let $\phi(n)$ be the number of integers $I$ such that $1 \leq I \leq n$ and $\gcd(I, n) = 1$.
+for some sequence of primes $\{ p_i \}_{i=1}^M$ and some sequence of positive integers $\{k_i\}_{i=1}^M$. Let $\phi(n)$ be the number of integers $I$ such that $1 \leq I \leq n$ and $\gcd(I, n) = 1$. Find a closed-form formula for $\phi(n)$.
 
 \bigskip
 
@@ -356,7 +372,6 @@ Therefore,
 \begin{equation*}
     \begin{split}
        P \Big( \gcd(I,n) = 1 \Big) &= P \Big( (p_1 \nmid I) \cap (p_2 \nmid I) \cap \cdots \cap (p_M \nmid I) \Big) \\
-        &= P \Big( \text{lcm} (p_1, p_2, \dots, p_M) \nmid I \Big) \\
         &= P(p_1 \nmid I) \cdot P(p_2 \nmid I) \cdots P(p_M \nmid I) \\
         &\text{(independent by the Chinese Remainder Theorem)} \\
         &= \left( 1 - \frac{1}{p_1} \right) \left( 1 - \frac{1}{p_2} \right) \cdots \left( 1 - \frac{1}{p_M} \right) \text{.}
@@ -393,14 +408,14 @@ we have
 \[
   n = p_1^{k_1}p_2^{k_2} \cdots 
 \] 
-where $p_1, p_2, \dots$ are primes and $k_1, k_2 \dots \in \mathbb{Z^+}$. Therefore, let
+where $p_1, p_2, \dots$ are the prime factors of $n$ and $k_1, k_2 \dots \in \mathbb{Z^+}$. Therefore, let $t(k) = s(k + 1)$ and let
 \[
   f(n) =
   \begin{cases}
     1 & \text{if } n = 1, \\
-    p_1^{s(k_1)}p_2^{s(k_2)} \cdots & \text{if } n \neq 1 \text{.}
+    p_1^{t(k_1)}p_2^{t(k_2)} \cdots & \text{if } n \neq 1 \text{.}
   \end{cases}
 \]
-We see that $f$ maps every positive rational number to a unique positive integer and every positive integer to a unique rational number because $s$ is a bijection between positive integers and integers.
+We cannot just have $s$ with no index shift in the exponent because $s(1) = 0$. We see that $f$ maps every positive rational number to a unique positive integer and every positive integer to a unique rational number because $t$ is a bijection between positive integers and integers excluding 0.
 
 \end{document}
