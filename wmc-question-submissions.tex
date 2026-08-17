@@ -1,0 +1,406 @@
+\documentclass{article}
+
+\title{WMC Question Writing Work Sample}
+\author{Fredric Gregory King Chung}
+\date{\today}
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\begin{document}
+\maketitle
+
+\part{Sample Proof Round Questions}
+
+\section{The Cauchy Functional Equation}
+
+\textbf{Problem 1a.} Prove that for $f \colon \mathbb{Q} \rightarrow \mathbb{Q}$,
+\[
+    f(x) = cx \iff f(x + y) = f(x) + f(y)
+\]
+for any $x, y \in \mathbb{Q}$. (This was a question in the WMC Finals already, but I include it here for the sake of completeness.)
+
+\bigskip
+
+\noindent\textbf{Solution 1a.} We begin by noting that if $f(x) = cx$ for all $x \in \mathbb{R}$, then, trivially,
+\begin{equation*}
+    \begin{split}
+        f(x + y) & = c(x + y) \\
+        &= cx + cy \\
+        &= f(x) + f(y)
+    \end{split}
+\end{equation*}
+for all $x, y \in \mathbb{R}$. That is one direction of the implication done. Now, we just need to handle the other one.
+
+\bigskip
+
+We proceed by proving that if 
+\[
+    f(x + y) = f(x) + f(y)
+\] 
+for any $x, y \in \mathbb{Q}$, then $f(x) = cx$ for any $x \in \mathbb{Q}$. We do this by first doing induction over the natural numbers and then extending our result to all integers.
+
+\bigskip
+
+Let $f(1) = c$. Also, let $P(x)$ refer to the proposition that $f(x) = cx$. Then, we notice that assuming $P(x)$,
+\begin{equation*}
+    \begin{split}
+        f(x + 1) & = f(x) + f(1) \\
+        &= cx + c \\
+        &= c(x + 1) \text{,}
+    \end{split}
+\end{equation*}
+i.e.
+\[
+    P(x) \implies P(x + 1) \text{.}
+\]
+As our base case is $P(1)$, by induction, we have $P(n)$ for all $n \in \mathbb{Z^+}$.
+
+\bigskip
+
+We proceed to handling positive rational numbers. We start with reciprocals of positive integers. Notice that for $n \in \mathbb{Z^+}$,
+\begin{equation*}
+    \begin{split}
+        c &= f(1) \\
+        &= f \left( n \cdot \frac{1}{n} \right) \\
+        &= f \left( \frac{1}{n} + \cdots + \frac{1}{n} \right) \text{ ($n$ copies)} \\
+        &= f \left( \frac{1}{n} \right) + \cdots + f \left( \frac{1}{n} \right) \text{ ($n$ copies)} \\
+        &= n \cdot f \left( \frac{1}{n} \right) \text{.}
+    \end{split}
+\end{equation*}
+Hence,
+\[
+    f \left( \frac{1}{n} \right) = c \cdot \frac{1}{n} \text{.}
+\]
+Moving on to covering all rationals, notice that for $p, q \in \mathbb{Z^+}$,
+\begin{equation*}
+    \begin{split}
+        f \left( \frac{p}{q} \right) &= f \left( p \cdot \frac{1}{q} \right) \\
+        &= f \left( \frac{1}{q} + \cdots + \frac{1}{q} \right) \text{ ($p$ copies)} \\
+        &= f \left( \frac{1}{q} \right) + \cdots + f \left( \frac{1}{q} \right) \text{ ($p$ copies)} \\
+        &= p \cdot f \left( \frac{1}{q} \right) \\
+        &= c \cdot \frac{p}{q} \text{.}
+    \end{split}
+\end{equation*}
+Hence,
+\[
+    f(x) = cx
+\]
+for all $x \in \mathbb{Q^+}$.
+
+\bigskip
+
+Proceeding to extend our result to rational numbers of all signs, notice that
+\[
+    f(0) + f(0) = f(0 + 0) = f(0) \text{.}
+\]
+Hence, $f(0) = 0$. Then, notice that as $f(x) = cx$ for all $x \in \mathbb{Q^+}$.
+\begin{equation*}
+    \begin{split}
+        f(-x + x) & = f(-x) + f(x) \\
+        f(0) &= f(-x) + cx \\
+        0 &= f(-x) + cx \\
+        f(-x) &= c(-x) \text{.}
+    \end{split}
+\end{equation*}
+Hence,
+\[
+    f(x) = cx
+\]
+for all $x \in \mathbb{Q}$. We will finish the problem using this intermediate result and the idea of continuity.
+
+\bigskip
+
+\noindent\textbf{Problem 1b.} Hence or otherwise, prove that if $f \colon \mathbb{R} \rightarrow \mathbb{R}$ is continuous, then
+\[
+    f(x) = cx \iff f(x + y) = f(x) + f(y)
+\]
+for any $x, y \in \mathbb{R}$. (Hint: generalize your result from earlier using some calculus.)
+
+\bigskip
+
+\noindent\textbf{Solution 1b.} \textit{The key intuition is that all real numbers are limits of sequences of rational numbers.} Hence, we will try to construct a sequence that approaches $x$ for every $x \in \mathbb{R}$. Let
+\[
+    x_n = \frac{\lfloor nx \rfloor}{n}.
+\]
+Notice that
+\[
+    nx - 1 \leq \lfloor nx \rfloor \leq nx \text{.}
+\]
+Hence,
+\[
+    \frac{nx - 1}{n} \leq \frac{\lfloor nx \rfloor}{n} \leq \frac{nx}{n}
+\]
+\[
+   x - \frac{1}{n} \leq x_n \leq x \text{.}
+\]
+From the Squeeze Theorem, as
+\[
+    \lim_{n \rightarrow \infty} \left( x - \frac{1}{n} \right) = \lim_{n \rightarrow \infty} x = x \text{,}
+\]
+we have
+\[
+    x = \lim_{n \rightarrow \infty} x_n \text{.}
+\]
+Therefore, as $f$ is continuous,
+\begin{equation*}
+    \begin{split}
+        f(x) &= f \left( \lim_{n \rightarrow \infty} x_n \right) \\
+        &= \lim_{n \rightarrow \infty} f(x_n) \text{ (this allows us to use $f(x) = cx$ for all $x \in \mathbb{Q}$)} \\
+        &= \lim_{n \rightarrow \infty} c \cdot x_n \\
+        &= c \cdot \lim_{n \rightarrow \infty} x_n \\
+        &= cx
+    \end{split}
+\end{equation*}
+for all $x \in \mathbb{R}$.
+
+\section{Inequalities Through Calculus}
+
+\textbf{Problem 2a.} Prove that, for any $f$ where $f'' \geq 0$ and where the following inputs are defined,
+\[
+    f(\overline{x}) \leq \sum_{i=1}^{n} a_i f(x_i) \text{,}
+\]
+where $\{ a_i \}_{i=1}^n$ is a sequence of positive real numbers and $\{ x_i \}_{i=1}^n$ is a sequence of real numbers,
+\[
+    \sum_{i=1}^n a_i = 1 \text{,}
+\]
+and
+\[
+    \overline{x} = \sum_{i=1}^n a_i x_i \text{.}
+\]
+(This inequality is known as Jensen's Inequality.)
+
+\bigskip
+
+\noindent\textbf{Solution 2a.} We begin by considering an individual $x_i$ and $\overline{x}$. Notice that either $x_i > \overline{x}$, $x_i < \overline{x}$, or $x_i = \overline{x}$. Also, notice that as $f'' \geq 0$, $f'$ is increasing. (Not monotonically, though.) \textit{The key to this problem is to use the fact that $f'$ is increasing alongside the Mean Value Theorem. (It can also be thought of as a consideration of the area under $f'$, which is $f$.)}
+
+In the case that $\overline{x} > x_i$, from the Mean Value Theorem, for some $c$ such that $x_i < c < \overline{x}$,
+\[
+    \frac{f(\overline{x}) - f(x_i)}{\overline{x} - x_i} = f'(c) \text{.}
+\]
+Since $f'$ is increasing,
+\[
+    \frac{f(\overline{x}) - f(x_i)}{\overline{x} - x_i} = f'(c) \leq f'(\overline{x}) \text{.}
+\]
+Since $\overline{x} - x_i > 0$,
+\[
+    f(\overline{x}) - f(x_i) \leq f'(\overline{x})(\overline{x} - x_i) \text{.}
+\]
+
+\bigskip
+
+In the case that $\overline{x} < x_i$, from the Mean Value Theorem, for some $c$ such that $\overline{x} < c < x_i$,
+\[
+    \frac{f(\overline{x}) - f(x_i)}{\overline{x} - x_i} = f'(c) \text{.}
+\]
+Since $f'$ is increasing,
+\[
+    \frac{f(\overline{x}) - f(x_i)}{\overline{x} - x_i} = f'(c) \geq f'(\overline{x}) \text{.}
+\]
+Since $\overline{x} - x_i < 0$,
+\[
+    f(\overline{x}) - f(x_i) \leq f'(\overline{x})(\overline{x} - x_i) \text{.}
+\]
+
+\bigskip
+
+In the case that $\overline{x} = x_i$,
+\[
+    f(\overline{x}) - f(x_i) \leq f'(\overline{x})(\overline{x} - x_i) \text{.}
+\]
+is trivially true because both the left-hand and right-hand sides of the inequality are equal to zero.
+
+\bigskip
+
+Now, multiplying both sides by $a_i$ and summing over $i$ from $1$ to $n$ inclusive,
+\[
+    \sum_{i=1}^n a_i \left( f(\overline{x}) - f(x_i) \right) \leq \sum_{i=1}^n a_i \left( f'(\overline{x})(\overline{x} - x_i) \right)
+\]
+\[
+    f(\overline{x}) - \sum_{i=1}^n a_i f(x_i) \leq f'(\overline{x})(\overline{x} - \overline{x}) \leq 0
+\]
+\[
+    f(\overline{x}) \leq \sum_{i=1}^n a_i f(x_i) \text{.}
+\]
+
+\bigskip
+
+\noindent\textbf{Problem 2b.} Let
+\[
+  \mathcal{P}(x) =
+  \begin{cases}
+    \left( \frac{a_1^x + a_2^x + \cdots + a_n^x}{n} \right)^\frac{1}{x} & \text{if } x \neq 0, \\
+    (a_1 a_2 \cdots a_n)^\frac{1}{n} & \text{if } x = 0 \text{,}
+  \end{cases}
+\]
+where $a_1, \dots, a_n$ are positive real numbers. Prove that $\mathcal{P}(r) \geq \mathcal{P}(s)$ if $r > s$.
+
+\bigskip
+
+\noindent\textbf{Solution 2b.} Notice that we are to prove that $\mathcal{P}(x)$ is an increasing function, that is, that $\mathcal{P}'(x) \geq 0$. Also, since $\mathcal{P}$ has two definitions, we would like to prove that $\lim_{x \rightarrow 0} \mathcal{P}(x) = \mathcal{P}(0)$ so that we can show that $\mathcal{P}$ is continuous.
+
+\bigskip
+
+We begin by showing that $P'(x) \geq 0$ when $x \neq 0$. \textit{The key to this is to first consider $\ln \mathcal{P}(x)$, to get rid of the exponent $\frac{1}{x}$, and take its derivative. Then, we manipulate our inequality into a form that can be finished off with Jensen's Inequality; we do this by doing some algebraic cleanup and then using a substitution to get rid of the exponent in $a_i^x$.} When $x \neq 0$,
+\[
+  \ln \mathcal{P}(x) = \frac{1}{x} \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right) \text{.}
+\]
+Taking the derivative of both sides,
+\begin{equation*}
+    \begin{split}
+        \frac{\mathcal{P}'(x)}{|\mathcal{P}(x)|} & = -\frac{1}{x^2} \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right) + \frac{1}{x} \cdot \frac{\sum_{i=1}^n \ln (a_i) \cdot a_i^x}{\left| \sum_{i=1}^n a_i^x \right|} \\
+        &= -\frac{1}{x^2} \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right) + \frac{1}{x} \cdot \frac{\sum_{i=1}^n \ln (a_i) \cdot a_i^x}{\sum_{i=1}^n a_i^x} \text{.}
+    \end{split}
+\end{equation*}
+Hence,
+\[
+  \mathcal{P}'(x) \geq 0
+\]
+\[
+  \iff -\frac{1}{x^2} \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right) + \frac{1}{x} \cdot \frac{\sum_{i=1}^n \ln (a_i) \cdot a_i^x}{\sum_{i=1}^n a_i^x} \geq 0
+\]
+\[
+  \iff  \frac{1}{x} \cdot \frac{\sum_{i=1}^n \ln (a_i) \cdot a_i^x}{\sum_{i=1}^n a_i^x} \geq \frac{1}{x^2} \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right)
+\]
+\[
+  \iff  x \cdot \frac{\sum_{i=1}^n \ln (a_i) \cdot a_i^x}{\sum_{i=1}^n a_i^x} \geq \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right)
+\]
+\[
+  \iff  x \sum_{i=1}^n \ln (a_i) \cdot a_i^x \geq \left( \sum_{i=1}^n a_i^x \right) \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right) \text{.}
+\]
+Now, let $A_i = a_i^x$. Because $a_i$ is positive, $A_i$ is positive too. Hence, our inequality is equivalent to
+\[
+  x \sum_{i=1}^n \ln \left( A_i^\frac{1}{x} \right) \cdot A_i \geq \left( \sum_{i=1}^n A_i \right) \ln \left( \frac{\sum_{i=1}^n A_i}{n} \right)
+\]
+\[
+    \iff \sum_{i=1}^n A_i \ln (A_i) \geq \left( \sum_{i=1}^n A_i \right) \ln \left( \frac{\sum_{i=1}^n A_i}{n} \right) \text{.}
+\]
+Let $f(x) = x \ln x$ and $\overline{a} = \frac{\sum_{i=1}^n A_i}{n}$. Then, this inequality is equivalent to
+\[
+    \sum_{i=1}^n f(A_i) \geq \sum_{i=1}^n \Big( n \cdot f(\overline{a}) \Big)
+\]
+\[
+    \iff \frac{1}{n} \sum_{i=1}^n f(A_i) \geq \sum_{i=1}^n f(\overline{a}) \text{.}
+\]
+Since
+\[
+    f''(x) = \frac{d}{dx} (\ln x + 1) = \frac{1}{x} > 0 \text{,}
+\]
+$f$ is concave up, so the inequality we were considering above is true by Jensen's Inequality. Hence,
+\[
+    \mathcal{P}'(x) \geq 0
+\]
+for $x \neq 0$. In order to show that $\mathcal{P}(r) \geq \mathcal{P}(s)$ if $r > s$, we also have to show that $\mathcal{P}$ is continuous at $x = 0$. \textit{The motivation for this is that we are really almost done, but need to show that our inequality is not ruined by a hole at $x = 0$.}
+\bigskip
+
+We now proceed to show that $\lim_{x \rightarrow 0} \mathcal{P}(x) = \mathcal{P}(0)$. As before, it is helpful to consider $\ln \mathcal{P}(x)$. For $x \neq 0$,
+\[
+    \ln \mathcal{P}(x) = \frac{1}{x} \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right) \text{,}
+\]
+so
+\[
+    \lim_{x \rightarrow 0} \ln \mathcal{P}(x) = \lim_{x \rightarrow 0} \frac{1}{x} \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right) \text{.}
+\]
+Notice that
+\begin{equation*}
+    \begin{split}
+        \lim_{x \rightarrow 0} \ln \left( \frac{\sum_{i=1}^n a_i^x}{n} \right) &= \lim_{x \rightarrow 0} \ln \left( \frac{\sum_{i=1}^n a_i^0}{n} \right) \\ 
+        &= \lim_{x \rightarrow 0} \ln \left( \frac{n}{n} \right) \\
+        &= \ln 1 \\
+        &= 0 \text{,}
+    \end{split}
+\end{equation*}
+so we have a $\frac{0}{0}$ indeterminate form, allowing us to use l'Hopital's Rule. Hence,
+\begin{equation*}
+    \begin{split}
+        \lim_{x \rightarrow 0} \ln \mathcal{P}(x) &= \lim_{x \rightarrow 0} \frac{\sum_{i=1}^n (\ln a_i)a_i^x}{\sum_{i=1}^n a_i^x} \\
+        &= \lim_{x \rightarrow 0} \frac{\sum_{i=1}^n \ln a_i}{n} \\
+        &= \lim_{x \rightarrow 0} \ln (a_1 a_2 \cdots a_n)^\frac{1}{n} \\
+        &= \ln (a_1 a_2 \cdots a_n)^\frac{1}{n} \\
+        &= \ln \mathcal{P}(0) \text{.}
+    \end{split}
+\end{equation*}
+Hence,
+\[
+    \lim_{x \rightarrow 0} \mathcal{P}(x) = \mathcal{P}(0) \text{.}
+\]
+
+\section{Euler's Totient Formula Through Probability}
+
+\noindent\textbf{Problem 3.} Note that every $n \in \mathbb{Z^+}$ other than $1$ has a unique prime factorization, which can be written as
+\[
+    n = \prod_{i=1}^{M} p_i^{k_i}
+\]
+for some sequence of primes $\{ p_i \}_{i=1}^M$ and some sequence of positive integers $\{k_i\}_{i=1}^M$. Let $\phi(n)$ be the number of integers $I$ such that $1 \leq I \leq n$ and $\gcd(I, n) = 1$.
+
+\bigskip
+
+\noindent\textbf{Solution 3.} \textit{We solve this problem by considering the probability that some randomly chosen integer $I$ such that $1 \leq I \leq n$ satisfies $\gcd(I, n) = 1$ in order to bypass the classical proof. We break $gcd(I, n) = 1$ down into cases by considering the idea that the probabilities that any of the prime divisors $p_i$ of $n$ divide $I$ are independent from each other.} 
+
+\bigskip
+
+Before that, we will prove a lemma: if $a \mid n$, then $P(a \mid I) = \frac{1}{a}$ for some randomly chosen integer $I$ such that $1 \leq I \leq n$. Let $n = ab$ for some $b \in \mathbb{Z^+}$. Then,
+\begin{equation*}
+    \begin{split}
+       P(a \mid I) &= \frac{\#(a \mid I)}{n} \\
+       &= \frac{ \#(I = a, I = 2a, I = 3a, \dots, I = ab = n)}{n} \\
+       &= \frac{b}{n} \\
+       &= \frac{1}{a} \text{.}
+    \end{split}
+\end{equation*}
+
+\bigskip
+
+Therefore,
+\begin{equation*}
+    \begin{split}
+       P \Big( \gcd(I,n) = 1 \Big) &= P \Big( (p_1 \nmid I) \cap (p_2 \nmid I) \cap \cdots \cap (p_M \nmid I) \Big) \\
+        &= P \Big( \text{lcm} (p_1, p_2, \dots, p_M) \nmid I \Big) \\
+        &= P(p_1 \nmid I) \cdot P(p_2 \nmid I) \cdots P(p_M \nmid I) \\
+        &\text{(independent by the Chinese Remainder Theorem)} \\
+        &= \left( 1 - \frac{1}{p_1} \right) \left( 1 - \frac{1}{p_2} \right) \cdots \left( 1 - \frac{1}{p_M} \right) \text{.}
+    \end{split}
+\end{equation*}
+Hence, as
+\[
+    \frac{\phi(n)}{n} = P \Big( \gcd(I,n) = 1 \Big) = \left( 1 - \frac{1}{p_1} \right) \left( 1 - \frac{1}{p_2} \right) \cdots \left( 1 - \frac{1}{p_M} \right) \text{,}
+\]
+we have
+\[
+    \phi(n) = n \left( 1 - \frac{1}{p_1} \right) \left( 1 - \frac{1}{p_2} \right) \cdots \left( 1 - \frac{1}{p_M} \right) \text{.}
+\]
+
+\section{Sizes of Infinity: $|\mathbb{Z^+}| = |\mathbb{Q^+}|$}
+
+\noindent\textbf{Remark.} In this problem, we determine which infinite sets have the same cardinality, or size, as each other. To show that $|A| = |B|$ -- that set $A$ has the same size as set $B$ -- we can show that every $a \in A$ maps to a unique $b \in B$, and every $b \in B$ maps to a unique $a \in A$. We can specify the mapping by writing functions with the domain $A$ and codomain $B$. Indeed, functions are \textit{defined} as mappings between sets.
+
+\bigskip
+
+\noindent\textbf{Problem 4a.} Write a function $s$ that establishes a bijection between $\mathbb{Z^+}$ (positive integers) and $\mathbb{Z}$ (integers), i.e. show that $|\mathbb{Z}^+| = |\mathbb{Z}|$.
+
+\bigskip
+
+\noindent\textbf{Solution 4a.} Let $s(n) = (-1)^n \lfloor \frac{n}{2} \rfloor$. Notice that $s$ maps every $n \in \mathbb{Z^+}$ to a unique $m \in \mathbb{Z}$. This is because there are two $n$ with the same $\lfloor \frac{n}{2} \rfloor$, but the parity of $n$ determines the sign of $m$. Similarly, solving the equation $s(n) = m$ where $m \in \mathbb{Z}$ yields a unique $n \in \mathbb{Z}$. This is because for $m \neq 0$, there are two $n$ such that $\lfloor \frac{n}{2} \rfloor = |m|$, and the sign of $m$ determines the parity of $n$. If $m = 0$, then $n = 1$. ($n = 1$ only happens for $m = 0$, too.) Hence, \textit{$s$ is a bijection between $\mathbb{Z^+}$ and $\mathbb{Z}$.}
+
+\bigskip
+
+\noindent\textbf{Problem 4b.} Hence or otherwise, show that there exists a bijection between the positive integers and the positive rationals, i.e. that $|\mathbb{Z^+}| = |\mathbb{Q^+}|$. 
+
+\bigskip
+
+\noindent\textbf{Solution 4b.} \textit{The key idea is to note that both positive integers and positive rational numbers have unique prime factorizations. We can use our function to establish a bijection between them by applying it to the exponents of the primes in the factorizations of the positive integers.} Notice that every $n \in \mathbb{Z^+}$ can be written as
+\[
+  n = p_1^{k_1}p_2^{k_2} \cdots 
+\] 
+where $p_1, p_2, \dots$ are primes and $k_1, k_2 \dots \in \mathbb{Z^+}$. Therefore, let
+\[
+  f(n) =
+  \begin{cases}
+    1 & \text{if } n = 1, \\
+    p_1^{s(k_1)}p_2^{s(k_2)} \cdots & \text{if } n \neq 1 \text{.}
+  \end{cases}
+\]
+We see that $f$ maps every positive rational number to a unique positive integer and every positive integer to a unique rational number because $s$ is a bijection between positive integers and integers.
+
+\end{document}
